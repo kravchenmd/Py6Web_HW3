@@ -7,7 +7,6 @@ license = "MIT"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-keyboard = "^0.13.5"
 prompt-toolkit = "^3.0.30"
 psutil = "^5.9.1"
 
