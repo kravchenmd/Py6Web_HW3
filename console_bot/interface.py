@@ -5,7 +5,6 @@ import time
 from dataclasses import dataclass
 from enum import Enum
 
-import keyboard
 import psutil
 from prompt_toolkit import prompt
 from prompt_toolkit.completion import WordCompleter
@@ -34,37 +33,49 @@ class ConsoleProgramMode(ProgramMode):
     def __init__(self):
         self.value: Modes | None = None
 
-    def choose_mode(self) -> None:
+    def choose_mode(self, terminal_run: bool) -> None:
         message = "*** Console bot project ***\n" \
                         "***  Team #3 - PyStars  ***\n"
         print(message)
         time.sleep(1)
         message = "Modes of the bot:\n" \
-                  "\tEsc - Exit\n" \
-                  "\t1   - Address book mode\n" \
-                  "\t2   - Note mode\n" \
-                  "\t3   - Sorting of a folder\n" \
+                  "\t0 - Exit\n" \
+                  "\t1 - Address book mode\n" \
+                  "\t2 - Note mode\n" \
+                  "\t3 - Sorting of a folder\n" \
                   "Input number and press Enter, or press Esc to exit..."
         print(message)
 
         while not self.value:
-            if keyboard.is_pressed('Esc'):
+            command = None
+            if terminal_run:
+                command = prompt('Enter number to choose mode: ', completer=self.command_completer.completer)
+            while not command:
+                command = input('Enter number to choose mode: ')
+                if command not in ['0', '1', '2', '3']:
+                    command = None
+            if command == '0':
                 print("\nGoodbye!")
                 sys.exit()  # exit program (to prevent going to the next while)
 
-            if keyboard.is_pressed('1'):
-                input()
-                self.value = Modes.ADDRESS_BOOK
-
-            if keyboard.is_pressed('2'):
-                input()
-                self.value = Modes.NOTES
-
-            if keyboard.is_pressed('3'):
-                input()
-                self.value = Modes.SORTING
-        message = f"{self.value.value}' mode.\n"
-        print(message)
+        # while not self.value:
+        #     if keyboard.is_pressed('Esc'):
+        #         print("\nGoodbye!")
+        #         sys.exit()  # exit program (to prevent going to the next while)
+        #
+        #     if keyboard.is_pressed('1'):
+        #         input()
+        #         self.value = Modes.ADDRESS_BOOK
+        #
+        #     if keyboard.is_pressed('2'):
+        #         input()
+        #         self.value = Modes.NOTES
+        #
+        #     if keyboard.is_pressed('3'):
+        #         input()
+        #         self.value = Modes.SORTING
+        # message = f"{self.value.value}' mode.\n"
+        # print(message)
 
 
 @dataclass
@@ -148,7 +159,7 @@ class ConsoleInterface(UserInterface):
     container: Container
 
     def __initialization(self, terminal_run: bool):
-        self.mode.choose_mode()
+        self.mode.choose_mode(terminal_run)
         current_mode = self.mode.value
         self.container.choose_container(current_mode)
 
