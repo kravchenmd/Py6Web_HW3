@@ -1,4 +1,12 @@
 [[package]]
+name = "getch"
+version = "1.0"
+description = "Does single char input, like C getch/getche"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "keyboard"
 version = "0.13.5"
 description = "Hook and simulate keyboard events on Windows and Linux"
@@ -1906,9 +1914,13 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "585878dcf73628dac9da3dca65140c1e6b1e32545cf74974896d8a4275bcfe2e"
+content-hash = "5a52e1ec96dd56f9feb83fe79c426348f7af696009ea1bc30cb1a67ae9f8b1a1"
 
 [metadata.files]
+getch = [
+    {file = "getch-1.0-python2.tar.gz", hash = "sha256:be451438f7a2b389f96753aea39b6ed2540a390f1b9a12badcbc110cf9a5ce7f"},
+    {file = "getch-1.0.tar.gz", hash = "sha256:a6c22717c10051ce65b8fb7bddb171af705b1175e694a73be956990f6089d8b1"},
+]
 keyboard = [
     {file = "keyboard-0.13.5-py3-none-any.whl", hash = "sha256:8e9c2422f1217e0bd84489b9ecd361027cc78415828f4fe4f88dd4acd587947b"},
     {file = "keyboard-0.13.5.zip", hash = "sha256:63ed83305955939ca5c9a73755e5cc43e8242263f5ad5fd3bb7e0b032f3d308b"},
