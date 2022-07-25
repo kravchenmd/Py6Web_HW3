@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "console_bot"
+version = "0.1.0"
+description = "Py6Web HW3"
+authors = ["kravchenmd <kravchenmd@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+keyboard = "^0.13.5"
+prompt-toolkit = "^3.0.30"
+psutil = "^5.9.1"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
