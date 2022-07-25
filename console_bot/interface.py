@@ -42,40 +42,32 @@ class ConsoleProgramMode(ProgramMode):
                   "\t0 - Exit\n" \
                   "\t1 - Address book mode\n" \
                   "\t2 - Note mode\n" \
-                  "\t3 - Sorting of a folder\n" \
-                  "Input number and press Enter, or press Esc to exit..."
+                  "\t3 - Sorting of a folder\n"
         print(message)
 
         while not self.value:
             command = None
             if terminal_run:
-                command = prompt('Enter number to choose mode: ', completer=self.command_completer.completer)
+                command = prompt('Input number and press Enter choose mode: ', completer=self.command_completer.completer)
             while not command:
                 command = input('Enter number to choose mode: ')
                 if command not in ['0', '1', '2', '3']:
+                    print("You need to enter only a number from 0 to 3!")
                     command = None
-            if command == '0':
-                print("\nGoodbye!")
-                sys.exit()  # exit program (to prevent going to the next while)
 
-        # while not self.value:
-        #     if keyboard.is_pressed('Esc'):
-        #         print("\nGoodbye!")
-        #         sys.exit()  # exit program (to prevent going to the next while)
-        #
-        #     if keyboard.is_pressed('1'):
-        #         input()
-        #         self.value = Modes.ADDRESS_BOOK
-        #
-        #     if keyboard.is_pressed('2'):
-        #         input()
-        #         self.value = Modes.NOTES
-        #
-        #     if keyboard.is_pressed('3'):
-        #         input()
-        #         self.value = Modes.SORTING
-        # message = f"{self.value.value}' mode.\n"
-        # print(message)
+            match command:
+                case '0':
+                    print("\nGoodbye!")
+                    sys.exit()  # exit program (to prevent going to the next while)
+                case '1':
+                    self.value = Modes.ADDRESS_BOOK
+                case '2':
+                    self.value = Modes.NOTES
+                case '3':
+                    self.value = Modes.SORTING
+
+        message = f"{self.value.value}' mode.\n"
+        print(message)
 
 
 @dataclass
