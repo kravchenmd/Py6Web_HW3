@@ -1,0 +1,6 @@
+.idea
+.gitignore
+*.lock
+*.toml
+*.yml
+*.md
